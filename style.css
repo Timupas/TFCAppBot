@@ -121,6 +121,7 @@ body {
   font-size: 12px;
   color: var(--tg-theme-hint-color, #8888885b);
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .tab.active {
