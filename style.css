@@ -45,11 +45,11 @@ body {
     height: 300px;
     cursor: pointer;
     transition: transform 0.2s;
-    margin-top: 50px;
+    margin-top: 130px;
   }
   
   .click-area img:hover {
-    transform: scale(1.65);
+    transform: scale(1.85);
   }
   
   @media (max-width: 600px) {
@@ -71,7 +71,7 @@ body {
 
   /* Анимация нажатия */
 #clickable.clicked {
-  transform: scale(0.95);
+  transform: scale(1.60);
   transition: transform 0.1s ease;
 }
 
@@ -93,7 +93,7 @@ body {
   }
   100% {
     opacity: 0;
-    transform: translateY(-100px);
+    transform: translateY(-10px);
   }
 }
 
