@@ -34,10 +34,11 @@ body {
   }
   
   .counter {
-    font-size: 1.5rem;
+    font-size: 2.50rem;
     margin: 20px 0;
     color: aliceblue;
     font-weight: bold;
+
   }
   
   .click-area img {
@@ -45,7 +46,8 @@ body {
     height: 600px;
     cursor: pointer;
     transition: transform 0.2s;
-    margin-top: 95px;
+    margin-top: 125px;
+    -webkit-tap-highlight-color: transparent;
   }
   
   /* .click-area img:hover {
@@ -63,15 +65,15 @@ body {
     }
   
     .click-area img {
-      width: 265px;
-      height: 265px;
+      width: 280px;
+      height: 280px;
     }
   }
   
 
   /* Анимация нажатия */
 #clickable.clicked {
-  transform: scale(1.60);
+  transform: scale(1.05);
   transition: transform 0.1s ease;
 }
 
