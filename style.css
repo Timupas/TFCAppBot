@@ -48,6 +48,7 @@ body {
     transition: transform 0.2s;
     margin-top: 125px;
     -webkit-tap-highlight-color: transparent;
+    border-radius: 50%;
   }
   
   /* .click-area img:hover {
