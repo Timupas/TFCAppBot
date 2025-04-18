@@ -184,46 +184,36 @@ body {
   padding-top: 6px;
 }
 
-.clickable-reward {
-  cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.3s ease;
-}
-
-.clickable-reward:hover {
-  transform: scale(1.02);
-  background-color: #253041;
-}
-
-
-.clickable-reward {
+.bonus-card {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  background-color: #1e293b;
+  gap: 12px;
+  background: #303b4e;
+  padding: 8px 10px;
   border-radius: 10px;
-  padding: 10px;
   margin: 10px 0;
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.3s ease;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+  height: 60px; /* уменьшенная высота */
 }
 
-.clickable-reward:hover {
-  background-color: #27384f;
-  transform: scale(0.98);
+.bonus-card:hover {
+  transform: scale(1.02);
 }
 
-.reward-icon {
-  width: 50px;
-  height: 50px;
-  margin-right: 15px;
+.bonus-card img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
 }
 
-.reward-text {
-  color: #ffffff;
-  font-size: 1rem;
-  font-weight: bold;
+.bonus-card .text {
+  color: white;
+  font-size: 0.9rem;
 }
+
+
 
 .account-container {
   display: flex;
@@ -260,7 +250,7 @@ body {
   align-items: center;
   gap: 10px;
   margin: 0 auto; /* Центрирует кнопку */
-  margin-top: 250px;
+  margin-top: 400px;
 }
 
 .wallet-button:hover {
@@ -272,3 +262,25 @@ body {
   height: 20px;
 }
 
+.boost-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.boost-btn {
+  background-color: #2e3b4e;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.boost-btn.used {
+  opacity: 0.5;
+  pointer-events: none;
+}

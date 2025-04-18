@@ -5,9 +5,14 @@ window.addEventListener("DOMContentLoaded", () => {
   const clickable = document.getElementById("clickable");
   const container = document.getElementById("app-container");
   const rankDisplay = document.getElementById("rank-display");
+  const usernameDisplay = document.getElementById("username");
 
   let count = 0;
   let currentRank = "bronze";
+  let clickMultiplier = 1;
+  let robotEnabled = false;
+  let multiClickEnabled = false;
+  let boostTimeout;
 
   const ranks = [
     { name: "Бронза", class: "bronze", min: 0, value: 1 },
@@ -27,22 +32,22 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  clickable?.addEventListener("click", (e) => {
+  clickable.addEventListener("click", (e) => {
     clickable.classList.add("clicked");
     setTimeout(() => clickable.classList.remove("clicked"), 100);
 
-    const rank = ranks.slice().reverse().find(rank => count >= rank.min);
-    const addValue = rank ? rank.value : 1;
-    count += addValue;
+    let baseValue = ranks.slice().reverse().find(rank => count >= rank.min)?.value || 1;
+    let bonus = multiClickEnabled ? 3 : 0;
+    let added = (baseValue + bonus) * clickMultiplier;
 
+    count += added;
     countElem.textContent = count;
     scoreDisplay.textContent = count;
-
     updateRank();
 
     const flying = document.createElement("div");
     flying.className = "flying-one";
-    flying.textContent = `+${addValue}`;
+    flying.textContent = `+${added}`;
     const rect = container.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -52,55 +57,83 @@ window.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => flying.remove(), 1000);
   });
 
-  // === 📌 Обработка бонусных карточек ===
+  // Мини карточки бонуса
   document.querySelectorAll(".bonus-card").forEach(card => {
+    let clickedOnce = false;
     card.addEventListener("click", () => {
-      count += 100;
+      if (!clickedOnce) {
+        clickedOnce = true;
+        card.classList.add("half-clicked");
+        window.open("https://t.me/tfcmemecoin", "_blank");
+      } else {
+        card.remove();
+        count += 100;
+        countElem.textContent = count;
+        scoreDisplay.textContent = count;
+        updateRank();
+      }
+    });
+  });
+
+  // Улучшения
+  const upgradeBtns = document.querySelectorAll(".upgrade-btn");
+
+  upgradeBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const type = btn.dataset.type;
+      if (btn.classList.contains("disabled")) return;
+
+      if (type === "boost" && count >= 100) {
+        count -= 100;
+        clickMultiplier = 10;
+        btn.classList.add("disabled");
+        setTimeout(() => {
+          clickMultiplier = 1;
+          btn.classList.remove("disabled");
+        }, 5 * 60 * 1000);
+      }
+
+      if (type === "robot" && count >= 150 && !robotEnabled) {
+        count -= 150;
+        robotEnabled = true;
+        btn.classList.add("disabled");
+        setInterval(() => {
+          count += 1;
+          countElem.textContent = count;
+          scoreDisplay.textContent = count;
+          updateRank();
+        }, 1000);
+      }
+
+      if (type === "multi" && count >= 200 && !multiClickEnabled) {
+        count -= 200;
+        multiClickEnabled = true;
+        btn.classList.add("disabled");
+      }
+
       countElem.textContent = count;
       scoreDisplay.textContent = count;
-      card.remove(); // Удалить карточку после клика
       updateRank();
     });
   });
 
-  // === 🪙 Обработка кнопки "Привязать кошелёк" ===
-  const walletBtn = document.getElementById("connect-wallet");
-  if (walletBtn) {
-    walletBtn.addEventListener("click", () => {
-      alert("Заглушка: здесь будет привязка кошелька.");
-      // Здесь можно вставить логику подключения крипто-кошелька
-    });
-  }
-
-  // === 👤 Telegram WebApp user (аватар и имя) ===
+  // Telegram WebApp user
   const user = tg.initDataUnsafe?.user;
   if (user) {
-    const fullName = user.first_name + (user.last_name ? ' ' + user.last_name : '');
-    const avatarUrl = `https://t.me/i/userpic/320/${user.username}.jpg`;
-
-    const usernameElem = document.getElementById("username");
-    const avatarElem = document.getElementById("avatar");
-    if (usernameElem) usernameElem.textContent = fullName;
-    if (avatarElem) avatarElem.src = avatarUrl;
-
+    usernameDisplay.textContent = user.first_name + (user.last_name ? ' ' + user.last_name : '');
+    document.getElementById("avatar").src = `https://t.me/i/userpic/320/${user.username}.jpg`;
     const accountAvatar = document.getElementById("account-avatar");
-    const accountUsername = document.getElementById("account-username");
-    if (accountAvatar) accountAvatar.src = avatarUrl;
-    if (accountUsername) accountUsername.textContent = fullName;
+    const accountName = document.getElementById("account-username");
+    if (accountAvatar) accountAvatar.src = `https://t.me/i/userpic/320/${user.username}.jpg`;
+    if (accountName) accountName.textContent = user.first_name + (user.last_name ? ' ' + user.last_name : '');
   }
 
-  // === 🔄 Переключение вкладок ===
+  // Переключение вкладок
   document.querySelectorAll(".tab-button").forEach(button => {
     button.addEventListener("click", () => {
-      const tabId = button.dataset.tab;
-      if (!tabId) return;
-
       document.querySelectorAll(".tab-button").forEach(btn => btn.classList.remove("active"));
       document.querySelectorAll(".tab-content").forEach(tab => tab.classList.remove("active"));
-
-      const activeTab = document.getElementById(tabId);
-      if (activeTab) activeTab.classList.add("active");
-
+      document.getElementById(button.dataset.tab).classList.add("active");
       button.classList.add("active");
     });
   });
