@@ -16,6 +16,71 @@ window.addEventListener("DOMContentLoaded", () => {
       card.remove();
     }
   });
+
+  const modal = document.getElementById("register-modal");
+  const openModalBtn = document.getElementById("open-register-modal");
+  const registerSubmit = document.getElementById("register-submit");
+  const regNameInput = document.getElementById("reg-name");
+  const regPassInput = document.getElementById("reg-pass");
+  const accountUsername = document.getElementById("account-username");
+
+  if (openModalBtn) {
+    openModalBtn.addEventListener("click", () => {
+      modal.style.display = "flex";
+    });
+  }
+
+  if (registerSubmit) {
+    registerSubmit.addEventListener("click", () => {
+      const username = regNameInput.value.trim();
+      const password = regPassInput.value.trim();
+      if (username && password) {
+        accountUsername.textContent = username;
+        modal.style.display = "none";
+        regNameInput.value = "";
+        regPassInput.value = "";
+      }
+    });
+  }
+
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+  
+  registerSubmit.addEventListener("click", () => {
+    const username = regNameInput.value.trim();
+    const password = regPassInput.value.trim();
+    if (username && password) {
+      accountUsername.textContent = username;
+      modal.style.display = "none";
+      regNameInput.value = "";
+      regPassInput.value = "";
+    }
+  });
+
+  registerSubmit.addEventListener("click", () => {
+    const username = regNameInput.value.trim();
+    const password = regPassInput.value.trim();
+    if (username && password) {
+      // Обновляем имя в аккаунте
+      accountUsername.textContent = username;
+  
+      // Обновляем имя на главной
+      const mainUsername = document.querySelector("#home-tab #username");
+      if (mainUsername) {
+        mainUsername.textContent = username;
+      } else {
+        console.warn("main username span not found");
+      }
+  
+      // Закрываем модалку и чистим поля
+      modal.style.display = "none";
+      regNameInput.value = "";
+      regPassInput.value = "";
+    }
+  });
   
 
   let count = 0;
@@ -23,7 +88,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const ranks = [
     { name: "Бронза", class: "bronze", min: 0, value: 1 },
-    { name: "Серебро", class: "silver", min: 310, value: 3 },
+    { name: "Серебро", class: "silver", min: 500, value: 3 },
     { name: "Золото", class: "gold", min: 5000, value: 5 },
     { name: "Алмаз", class: "diamond", min: 10000, value: 10 },
     { name: "Платина", class: "platinum", min: 25000, value: 25 }
@@ -94,3 +159,4 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+

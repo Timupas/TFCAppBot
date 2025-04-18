@@ -14,7 +14,7 @@
       <header class="header">
         <img id="avatar" src="./img/Без названия463_20250415174421.png" alt="Avatar" class="avatar" />
         <!-- <span class="hdr-span">BETA</span> -->
-        <span id="username" class="username">Name</span>
+        <span id="username" class="username">{username}</span>
       </header>
 
       <div class="counter">
@@ -46,7 +46,17 @@
         </div>        
       
     </div>
+
   </div>
+
+  <div id="account-tab" class="tab-content">
+    <div class="account-info">
+      <img id="account-avatar" class="account-avatar" src="./img/Без названия463_20250415174421.png" alt="Avatar" />
+      <div class="account-username" id="account-username">Гость</div>
+      <button class="register-btn" id="open-register-modal">Зарегистрироваться</button>
+    </div>
+  </div>
+  
 
   <!-- Нижняя панель -->
   <div class="bottom-nav">
@@ -62,8 +72,24 @@
       </svg>
       <span>Рейтинг</span>
     </div>
+    <div class="tab-button" data-tab="account-tab">
+  <svg viewBox="0 0 24 24" class="icon">
+    <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+  </svg>
+  <span>Аккаунт</span>
+</div>
+
   </div>
 
   <script src="script.js"></script>
+  <div class="modal" id="register-modal">
+    <div class="modal-content">
+      <h3>Регистрация</h3>
+      <input type="text" id="reg-name" placeholder="Введите ник" />
+      <input type="password" id="reg-pass" placeholder="Введите пароль" />
+      <button id="register-submit">Зарегистрироваться</button>
+    </div>
+  </div>
+  
 </body>
 </html>
