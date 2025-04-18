@@ -49,13 +49,17 @@
 
   </div>
 
-  <div id="account-tab" class="tab-content">
-    <div class="account-info">
-      <img id="account-avatar" class="account-avatar" src="./img/Без названия463_20250415174421.png" alt="Avatar" />
-      <div class="account-username" id="account-username">Гость</div>
-      <button class="register-btn" id="open-register-modal">Зарегистрироваться</button>
-    </div>
+ <!-- Вкладка аккаунта -->
+<div id="account-tab" class="tab-content">
+  <div class="account-section">
+    <img id="account-avatar" class="avatar-large" src="./img/Без названия463_20250415174421.png" alt="Avatar" />
+    <div id="account-username" class="username-large">{username}</div>
+    <button id="connect-wallet" class="wallet-button">
+      <img src="./img/wallet-icon.png" alt="wallet icon" class="wallet-icon" />
+      Привязать кошелёк
+    </button>
   </div>
+</div>
   
 
   <!-- Нижняя панель -->
@@ -81,15 +85,6 @@
 
   </div>
 
-  <script src="script.js"></script>
-  <div class="modal" id="register-modal">
-    <div class="modal-content">
-      <h3>Регистрация</h3>
-      <input type="text" id="reg-name" placeholder="Введите ник" />
-      <input type="password" id="reg-pass" placeholder="Введите пароль" />
-      <button id="register-submit">Зарегистрироваться</button>
-    </div>
-  </div>
-  
+  <script src="script.js"></script> 
 </body>
 </html>
