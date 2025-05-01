@@ -13,17 +13,17 @@
     <div id="home-tab" class="tab-content active">
       <header class="header">
         <img id="avatar" src="./img/Без названия463_20250415174421.png" alt="Avatar" class="avatar" />
-        <!-- <span class="hdr-span">BETA</span> -->
         <span id="username" class="username">{username}</span>
       </header>
 
       <div class="counter">
-       <span id="count">0</span>
+        <span id="count">0</span>
       </div>
 
       <div class="click-area" id="click-area">
         <img src="./img/BronzeC.png" id="clickable" alt="Click me" />
       </div>
+
       <div class="boost-buttons">
         <button class="boost-btn" id="boost-1">🚀 | 100</button>
         <button class="boost-btn" id="boost-2">🤖 | 150</button>
@@ -31,78 +31,91 @@
       </div>
     </div>
 
-    
-    
-
     <!-- Вкладка рейтинга -->
-<!-- Вкладка рейтинга -->
-<div id="rating-tab" class="tab-content">
-  <h2 class="rank-title">Твой ранг</h2>
-  <div id="rank-display" class="rank-display">Bronze</div>
-  <p class="rank-desk">Очков: <span id="score-display">0</span></p>
+    <div id="rating-tab" class="tab-content">
+      <h2 class="rank-title">Твой ранг</h2>
+      <div id="rank-display" class="rank-display">Bronze</div>
+      <p class="rank-desk">$TFC: <span id="score-display">0</span></p>
 
-  <div class="bonus-card bronze">
-    <img src="./img/tgLogo.png" alt="Bronze" />
-    <div class="text">
-      <h4>Бонус за подписку</h4>
-      <p>+100 очков</p>
+      <div class="bonus-card bronze">
+        <img src="./img/tgLogo.png" alt="Bronze" />
+        <div class="text">
+          <h4>Бонус за подписку</h4>
+          <p>+10000 $TFC</p>
+        </div>
+      </div>
+
+      <div class="bonus-card silver">
+        <img src="./img/tgLogo.png" alt="Silver" />
+        <div class="text">
+          <h4>Бонус за подписку</h4>
+          <p>+10000 $TFC</p>
+        </div>
+      </div>
+
+      <div class="bonus-card gold">
+        <img src="./img/tgLogo.png" alt="Gold" />
+        <div class="text">
+          <h4>Бонус за подписку</h4>
+          <p>+10000 $TFC</p>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="bonus-card silver">
-    <img src="./img/tgLogo.png" alt="Silver" />
-    <div class="text">
-      <h4>Бонус за подписку</h4>
-      <p>+100 очков</p>
+    <div id="account-tab" class="tab-content">
+      <div class="account-section">
+        <img id="account-avatar" class="avatar-large" src="./img/Без названия463_20250415174421.png" alt="Avatar" />
+        <div id="account-username" class="username-large">{username}</div>
+        <hr class="account-divider">
+    
+        <!-- Внутренние вкладки -->
+        <div class="inner-tabs">
+          <button class="inner-tab-button active" data-inner-tab="inventory-content">Инвентарь</button>
+        </div>
+    
+        <!-- Содержимое инвентаря -->
+        <div id="inventory-content" class="account-subtab-content active">
+          <div class="inventory-grid">
+            <div class="inventory-item" data-skin="skin1">
+              <img src="./img/ThunderC.png" alt="Skin 1">
+              <p>ThunderCoin</p>
+            </div>
+            <div class="inventory-item" data-skin="skin2">
+              <img src="./img/FireC.png" alt="Skin 2">
+              <p>FireCoin</p>
+            </div>
+            <div class="inventory-item" data-skin="skin3">
+              <img src="./img/WaterC.png" alt="Skin 3">
+              <p>WaterCoin</p>
+            </div>
+          </div>  
+        </div>
+      </div>
     </div>
-  </div>
+    
 
-  <div class="bonus-card gold">
-    <img src="./img/tgLogo.png" alt="Gold" />
-    <div class="text">
-      <h4>Бонус за подписку</h4>
-      <p>+100 очков</p>
-    </div>
-  </div>
-</div>
-
-
- <!-- Вкладка аккаунта -->
-<div id="account-tab" class="tab-content">
-  <div class="account-section">
-    <img id="account-avatar" class="avatar-large" src="./img/Без названия463_20250415174421.png" alt="Avatar" />
-    <div id="account-username" class="username-large">{username}</div>
-    <button id="connect-wallet" class="wallet-button">
-      <img src="./img/wallet-icon.png" alt="wallet icon" class="wallet-icon" />
-      Привязать кошелёк
-    </button>
-  </div>
-</div>
-  
-
-  <!-- Нижняя панель -->
+  <!-- Нижняя панель навигации -->
   <div class="bottom-nav">
     <div class="tab-button active" data-tab="home-tab">
       <svg viewBox="0 0 24 24" class="icon">
         <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
       </svg>
-      <span>Главная</span>
+      <!-- <span>Главная</span> -->
     </div>
     <div class="tab-button" data-tab="rating-tab">
       <svg viewBox="0 0 24 24" class="icon">
         <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
       </svg>
-      <span>Рейтинг</span>
+      <!-- <span>Рейтинг</span> -->
     </div>
     <div class="tab-button" data-tab="account-tab">
-  <svg viewBox="0 0 24 24" class="icon">
-    <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
-  </svg>
-  <span>Аккаунт</span>
-</div>
-
+      <svg viewBox="0 0 24 24" class="icon">
+        <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+      </svg>
+      <!-- <span>Аккаунт</span> -->
+    </div>
   </div>
 
-  <script src="script.js"></script> 
+  <script src="script.js"></script>
 </body>
 </html>

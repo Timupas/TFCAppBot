@@ -16,10 +16,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const ranks = [
     { name: "Бронза", class: "bronze", min: 0, value: 1 },
-    { name: "Серебро", class: "silver", min: 1000, value: 3 },
-    { name: "Золото", class: "gold", min: 5000, value: 5 },
-    { name: "Алмаз", class: "diamond", min: 10000, value: 10 },
-    { name: "Платина", class: "platinum", min: 25000, value: 25 }
+    { name: "Серебро", class: "silver", min: 100000, value: 5 },
+    { name: "Золото", class: "gold", min: 500000, value: 15 },
+    { name: "Алмаз", class: "diamond", min: 1000000, value: 35 },
+    { name: "Платина", class: "platinum", min: 5000000, value: 200 }
   ];
 
   function updateRank() {
@@ -67,7 +67,7 @@ window.addEventListener("DOMContentLoaded", () => {
         window.open("https://t.me/tfcmemecoin", "_blank");
       } else {
         card.remove();
-        count += 100;
+        count += 10000;
         countElem.textContent = count;
         scoreDisplay.textContent = count;
         updateRank();
@@ -136,5 +136,87 @@ window.addEventListener("DOMContentLoaded", () => {
       document.getElementById(button.dataset.tab).classList.add("active");
       button.classList.add("active");
     });
+  });
+
+  // Переключение вкладок в нижней панели
+  const tabButtons = document.querySelectorAll(".tab-button");
+  const tabContents = document.querySelectorAll(".tab-content");
+
+  tabButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      tabButtons.forEach(btn => btn.classList.remove("active"));
+      tabContents.forEach(tab => tab.classList.remove("active"));
+
+      button.classList.add("active");
+      const targetTabId = button.dataset.tab;
+      const targetTab = document.getElementById(targetTabId);
+      if (targetTab) targetTab.classList.add("active");
+    });
+  });
+
+  // Инициализация первой вкладки как активной
+  if (tabButtons.length > 0) {
+    tabButtons[0].classList.add("active");
+    const firstTabId = tabButtons[0].dataset.tab;
+    const firstTab = document.getElementById(firstTabId);
+    if (firstTab) firstTab.classList.add("active");
+  }
+});
+
+// Внутренние вкладки в аккаунте
+document.querySelectorAll(".inner-tab-button").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".inner-tab-button").forEach(btn => btn.classList.remove("active"));
+    document.querySelectorAll(".inner-tab-content").forEach(tab => tab.classList.remove("active"));
+
+    const tabId = button.getAttribute("data-inner-tab");
+    document.getElementById(tabId).classList.add("active");
+    button.classList.add("active");
+  });
+});
+
+document.querySelectorAll(".account-subtab-button").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".account-subtab-button").forEach(btn => btn.classList.remove("active"));
+    document.querySelectorAll(".account-subtab-content").forEach(tab => tab.classList.remove("active"));
+    document.getElementById(button.dataset.tab).classList.add("active");
+    button.classList.add("active");
+  });
+});
+
+document.querySelectorAll(".tab-button").forEach(button => {
+  button.addEventListener("click", () => {
+    // Убираем класс активной вкладки с всех кнопок и контента
+    document.querySelectorAll(".tab-button").forEach(btn => btn.classList.remove("active"));
+    document.querySelectorAll(".tab-content").forEach(tab => tab.classList.remove("active"));
+
+    // Активируем выбранную кнопку
+    button.classList.add("active");
+
+    // Ищем и показываем соответствующую вкладку
+    const targetTabId = button.dataset.tab;
+    const targetTab = document.getElementById(targetTabId);
+    if (targetTab) targetTab.classList.add("active");
+  });
+});
+
+// Переключение вкладок аккаунта
+document.querySelectorAll(".account-subtab-button").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".account-subtab-button").forEach(btn => btn.classList.remove("active"));
+    document.querySelectorAll(".account-subtab-content").forEach(tab => tab.classList.remove("active"));
+    document.getElementById(button.dataset.tab).classList.add("active");
+    button.classList.add("active");
+  });
+});
+
+// Внутренние вкладки аккаунта
+document.querySelectorAll(".inner-tab-button").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".inner-tab-button").forEach(btn => btn.classList.remove("active"));
+    document.querySelectorAll(".inner-tab-content").forEach(tab => tab.classList.remove("active"));
+    const tabId = button.getAttribute("data-inner-tab");
+    document.getElementById(tabId).classList.add("active");
+    button.classList.add("active");
   });
 });
